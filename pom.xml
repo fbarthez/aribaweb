@@ -18,7 +18,8 @@
 	<modules>
 		<module>ariba-core</module>
 		<module>ariba-expr</module>
-		<!-- <module>ariba-metaui</module> <module>ariba-metaui-jpa</module> -->
+        <module>ariba-metaui</module> 
+		<!--<module>ariba-metaui-jpa</module> -->
 		<module>ariba-util</module>
 		<module>ariba-widgets</module>
 	</modules>
