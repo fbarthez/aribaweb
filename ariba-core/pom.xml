@@ -20,10 +20,6 @@
 			<artifactId>ariba-expr</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>aribaweb</groupId>
-			<artifactId>ariba-groovyloader</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>

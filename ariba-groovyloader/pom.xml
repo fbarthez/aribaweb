@@ -11,11 +11,15 @@
 	<name>ariba-groovyloader</name>
 
 	<dependencies>
-<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
-<dependency>
-    <groupId>org.codehaus.groovy</groupId>
-    <artifactId>groovy-all</artifactId>
-    <version>2.4.7</version>
-</dependency>
+		<dependency>
+			<groupId>aribaweb</groupId>
+			<artifactId>ariba-core</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.4.7</version>
+		</dependency>
 	</dependencies>
 </project>
