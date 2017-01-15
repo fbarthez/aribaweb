@@ -18,21 +18,7 @@
 				<version>2.8.1</version>
 				<executions>
 					<execution>
-						<id>jjc1</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>javacc</goal>
-						</goals>
-						<configuration>
-							<jdkVersion>1.8</jdkVersion>
-							<javadocFriendlyComments>true</javadocFriendlyComments>
-							<packageName>ariba.util.expr</packageName>
-							<sourceDirectory>src/main/java/ariba/util/expr</sourceDirectory>
-							<outputDirectory>src/main/java/ariba/util/expr</outputDirectory>
-						</configuration>
-					</execution>
-					<execution>
-						<id>jjt1</id>
+						<id>jjt2</id>
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>jjtree-javacc</goal>
@@ -40,8 +26,7 @@
 						<configuration>
 							<jdkVersion>1.8</jdkVersion>
 							<javadocFriendlyComments>true</javadocFriendlyComments>
-							<packageName>ariba.util.expr</packageName>
-							<sourceDirectory>src/main/java/ariba/util/expr</sourceDirectory>
+							<sourceDirectory>src/main/javacc</sourceDirectory>
 							<excludes>
 								<exclude>**/parser/**</exclude>
 							</excludes>

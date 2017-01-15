@@ -51,7 +51,7 @@
 			</dependency>
 			<dependency>
 				<groupId>aribaweb</groupId>
-				<artifactId>ariba-widget</artifactId>
+				<artifactId>ariba-widgets</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
