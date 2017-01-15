@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>aribaweb</groupId>
+        <artifactId>aribaweb</artifactId>
+        <version>5.2.0-SNAPSHOT</version>
+    </parent>
+	<groupId>aribaweb</groupId>
+	<artifactId>ariba-expr</artifactId>
+	<name>ariba-expr</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.helger.maven</groupId>
+				<artifactId>ph-javacc-maven-plugin</artifactId>
+				<version>2.8.1</version>
+				<executions>
+					<execution>
+						<id>jjc1</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>javacc</goal>
+						</goals>
+						<configuration>
+							<jdkVersion>1.8</jdkVersion>
+							<javadocFriendlyComments>true</javadocFriendlyComments>
+							<packageName>ariba.util.expr</packageName>
+							<sourceDirectory>src/main/java/ariba/util/expr</sourceDirectory>
+							<outputDirectory>src/main/java/ariba/util/expr</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>jjt1</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>jjtree-javacc</goal>
+						</goals>
+						<configuration>
+							<jdkVersion>1.8</jdkVersion>
+							<javadocFriendlyComments>true</javadocFriendlyComments>
+							<packageName>ariba.util.expr</packageName>
+							<sourceDirectory>src/main/java/ariba/util/expr</sourceDirectory>
+							<excludes>
+								<exclude>**/parser/**</exclude>
+							</excludes>
+							<outputDirectory>src/main/java</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>aribaweb</groupId>
+			<artifactId>ariba-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.javacc</groupId>
+			<artifactId>javacc</artifactId>
+		</dependency>
+	</dependencies>
+</project>
