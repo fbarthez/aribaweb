@@ -19,8 +19,8 @@
 		<module>ariba-core</module>
 		<module>ariba-expr</module>
 		<module>ariba-groovyloader</module>
-        <module>ariba-metaui</module> 
-		<!--<module>ariba-metaui-jpa</module> -->
+		<module>ariba-metaui</module>
+		<module>ariba-metaui-jpa</module>
 		<module>ariba-util</module>
 		<module>ariba-widgets</module>
 	</modules>
@@ -44,6 +44,11 @@
 			<dependency>
 				<groupId>aribaweb</groupId>
 				<artifactId>ariba-metaui</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>aribaweb</groupId>
+				<artifactId>ariba-metaui-jpa</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

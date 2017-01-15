@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>aribaweb</groupId>
+		<artifactId>aribaweb</artifactId>
+		<version>5.2.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>ariba-metaui-jpa</artifactId>
+	<name>ariba-metaui-jpa</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>aribaweb</groupId>
+			<artifactId>ariba-metaui</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.compass-project/compass -->
+		<dependency>
+			<groupId>org.compass-project</groupId>
+			<artifactId>compass</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<!-- a current version causes errors due to API changes -->
+			<version>3.6.10.Final</version>
+		</dependency>
+	</dependencies>
+</project>
