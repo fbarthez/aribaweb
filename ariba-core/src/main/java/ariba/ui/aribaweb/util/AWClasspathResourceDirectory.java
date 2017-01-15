@@ -217,6 +217,7 @@ public final class AWClasspathResourceDirectory extends AWResourceDirectory
      */
     public static final String AWJarPropertiesPath = "META-INF/aribaweb.properties";
     static final Pattern _URLJarNamePattern = Pattern.compile(".*[/\\\\](.+)\\.(jar|zip)\\!?/.*");;
+    static final Pattern _URLDevelopmentNamePattern = Pattern.compile(".*/([^/]*?)/target/classes/" + AWJarPropertiesPath);;
     static final String _ZipMarker = ".zip!";
 
     static Map<String, URL> _AWJarUrlsByName = null;
@@ -240,10 +241,15 @@ public final class AWClasspathResourceDirectory extends AWResourceDirectory
             }
             while (urls.hasMoreElements()) {
                 URL url = urls.nextElement();
-                Matcher m = _URLJarNamePattern.matcher(url.toExternalForm());
+                Matcher deployed = _URLJarNamePattern.matcher(url.toExternalForm());
+                // FP: introduced a second matcher to enable resource registration when an app is run from within eclipse
+                Matcher development = _URLDevelopmentNamePattern.matcher(url.toExternalForm());
                 // Assert.that(m.matches(), "Can't find jar name in URL: %s", url);
-                if (m.matches()) {
-                    String jarName = m.group(1);
+                if (deployed.matches()) {
+                    String jarName = deployed.group(1);
+                    _AWJarUrlsByName.put(jarName, url);
+                } else if (development.matches()) {
+                    String jarName = development.group(1);
                     _AWJarUrlsByName.put(jarName, url);
                 }
             }
@@ -440,20 +446,22 @@ public final class AWClasspathResourceDirectory extends AWResourceDirectory
 
             while (iter.next()) {
                 String filename = iter.getFilename();
-                if (filename.endsWith(".class")) {
+                if (filename != null && filename.endsWith(".class")) {
                     // System.out.println("recording " + filename);
                     AWJarWalker.processBytecode(iter, filename);
                 }
                 else {
                     if (extString != null && shouldRunInitializers) {
                         String urlString = iter.getURLString();
-                        AWClasspathResourceDirectory.recordResourcePath(filename, urlString);
-                        int index = filename.lastIndexOf('.');
-                        if (index > 0) {
-                            String ext = filename.substring(index);
-                            if (packagedResourceExtensions.contains(ext)) {
-                                _registerClassPathResource(filename, rd, resourceManager, loadedPackageNames);
-                            }
+                        if (urlString != null) {
+                           AWClasspathResourceDirectory.recordResourcePath(filename, urlString);
+                           int index = filename.lastIndexOf('.');
+                           if (index > 0) {
+                              String ext = filename.substring(index);
+                              if (packagedResourceExtensions.contains(ext)) {
+                                  _registerClassPathResource(filename, rd, resourceManager, loadedPackageNames);
+                              }
+                           }
                         }
                     }
                 }
