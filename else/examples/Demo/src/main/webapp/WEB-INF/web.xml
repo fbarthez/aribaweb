@@ -11,6 +11,6 @@
 </servlet>
 <servlet-mapping>
 <servlet-name>Demo</servlet-name>
-<url-pattern>/AribaWeb/*</url-pattern>
+<url-pattern>/Demo/AribaWeb/*</url-pattern>
 </servlet-mapping>
 </web-app>
