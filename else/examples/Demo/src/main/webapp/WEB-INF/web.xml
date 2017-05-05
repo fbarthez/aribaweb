@@ -7,7 +7,7 @@
 <servlet>
 <servlet-name>Demo</servlet-name>
 <servlet-class>ariba.ui.servletadaptor.AWDispatcherServlet</servlet-class>
-
+<load-on-startup>1</load-on-startup>
 </servlet>
 <servlet-mapping>
 <servlet-name>Demo</servlet-name>
