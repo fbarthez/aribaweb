@@ -216,7 +216,8 @@ public final class AWClasspathResourceDirectory extends AWResourceDirectory
             
      */
     public static final String AWJarPropertiesPath = "META-INF/aribaweb.properties";
-    static final Pattern _URLJarNamePattern = Pattern.compile(".*[/\\\\](.+)\\.(jar|zip)\\!?/.*");;
+    // TODO FP modified the original pattern to match on versioned maven snapshot jars – this will fail on everything else!
+    static final Pattern _URLJarNamePattern = Pattern.compile(".*[/\\\\](.+)-[\\d|\\.]+-SNAPSHOT\\.(jar|zip)\\!?/.*");;
     static final Pattern _URLDevelopmentNamePattern = Pattern.compile(".*/([^/]*?)/target/classes/" + AWJarPropertiesPath);;
     static final String _ZipMarker = ".zip!";
 
@@ -314,7 +315,9 @@ public final class AWClasspathResourceDirectory extends AWResourceDirectory
         rd.setContainsPackagedResources(true);
 
         Map<String, URL> awJarUrlsByName = awJarUrlsByName();
-        final List<String> orderedJarNames = new ArrayList();
+        // TODO FP remove debugging code that forces maven-compatible "jar" names in the required order
+        final List<String> orderedJarNames = new ArrayList(Arrays.asList("ariba-core", "ariba-widgets", "ariba-metaui", "ariba-groovyloader", "Demo"));
+//        final List<String> orderedJarNames = new ArrayList();
         final boolean didLoad = !awJarUrlsByName.isEmpty();
         Set<String> processedJars = new HashSet();
 
@@ -403,6 +406,8 @@ public final class AWClasspathResourceDirectory extends AWResourceDirectory
             boolean shouldRunInitializers = !isZip || Boolean.valueOf((String)properties.get("run-in-zip"));
 
             String dependsOn = (String)properties.get("depends-on");
+            // TODO FP remove debugging code that disables AW's proprietary dependency resolution
+            dependsOn = null;
             if (dependsOn != null) {
                 for (String dep : dependsOn.split(",")) {
                     URL depUrl = awJarUrlsByName.get(dep);

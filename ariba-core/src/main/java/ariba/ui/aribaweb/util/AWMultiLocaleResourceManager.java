@@ -362,6 +362,18 @@ abstract public class AWMultiLocaleResourceManager extends AWResourceManager
     private AWResource _cachedResourceNamed (String resourceName, Locale locale, boolean isBrandable)
     {
         AWResource resource = (AWResource)_resourcesHashtable.get(resourceName, locale);
+        // TODO FP remove debug code that retrieves resources keyed on absolute path when a relative path is looked up
+        if (resource == null && resourceName != null) {
+            for (Object aResource : _resourcesHashtable._allValues) {
+                if (aResource instanceof AWClasspathResource) {
+                    AWClasspathResource aCPR = (AWClasspathResource) aResource;
+                    if (aCPR._resourceName.contains(resourceName)) {
+                        resource = aCPR;
+                        break;
+                    }
+                }
+            }
+        }
         if (resource == null) {
             resource = chainedLocateResourceNamed(resourceName, locale, isBrandable);
             AWResourceManager base = getBaseResourceManager();
